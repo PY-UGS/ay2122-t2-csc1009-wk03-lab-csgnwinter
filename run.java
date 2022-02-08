@@ -1,20 +1,32 @@
 import java.util.*;
-import java.lang.Math;
 
 public class run {
-    public static void main(String[] args){
+    
+    public static void main(String[] args) {
+        System.out.println("Enter weight in pounds: ");
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter annual interest rate, for example, 8.25: ");
-        double interestRate = input.nextDouble();
-        System.out.print("Enter number of years as an integer: ");
-        int numberOfYears = input.nextInt();
-        System.out.print("Enter loan amount, for example, 12000.90: ");
-        double loanAmount = input.nextDouble();
+        double weight = input.nextDouble();
+        System.out.println("Enter height in pounds: ");
+        double height = input.nextDouble();
+        BMI newBMI = new BMI(height, weight);
+        System.out.println("BMI is: "+ newBMI.getBMI());
         input.close();
-        Loan loan = new Loan(interestRate, loanAmount, numberOfYears);
-        System.out.println("The loan was created on " + loan.getLoanDate());
-        System.out.println("The monthly payment is "+ Math.round(loan.getMonthlyPayment()*100.0)/100.0);
-        System.out.println("The total payment is "+Math.round(loan.getTotalPayment()*100.0)/100.0);
 
+        if (newBMI.getBMI()<18.5){
+            System.out.println("Underweight");
+        }
+        else if (newBMI.getBMI()>=18.5 && newBMI.getBMI()<25.0){
+            System.out.println("Normal");
+        }
+        else if (newBMI.getBMI()>=25.0 && newBMI.getBMI()<30.0){
+            System.out.println("Overweight");
+        }
+        else if (newBMI.getBMI()>=30.0){
+            System.out.println("Obese");
+        }
+        else {
+            System.out.println("Error");
+        }
+        
     }
 }
